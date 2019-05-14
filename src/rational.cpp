@@ -67,22 +67,38 @@ bool Rational::operator!=(const Rational & r) const
 
 bool Rational::operator<(const Rational & r) const
 {
-    return num < r.num || denom < r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum < yNum;
+    //return num < r.num || denom < r.denom;
 }
 
 bool Rational::operator>(const Rational & r) const
 {
-    return num > r.num || denom > r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum > yNum;
+    //return num > r.num || denom > r.denom;
 }
 
 bool Rational::operator<=(const Rational & r) const
 {
-    return num <= r.num || denom <= r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum <= yNum;
+    //return num <= r.num || denom <= r.denom;
 }
 
 bool Rational::operator>=(const Rational & r) const
 {
-    return num >= r.num || denom >= r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum >= yNum;
+    //return num >= r.num || denom >= r.denom;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
