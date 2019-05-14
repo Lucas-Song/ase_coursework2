@@ -2,9 +2,9 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "rational.h"
-#include "dividebyzeroerror.h"
-#include "gcd.h"
+#include "..\headers\rational.h"
+#include "..\headers\dividebyzeroerror.h"
+#include "..\headers\gcd.h"
 
 namespace ExactArithmetic
 {
@@ -67,22 +67,38 @@ bool Rational::operator!=(const Rational & r) const
 
 bool Rational::operator<(const Rational & r) const
 {
-    return num < r.num || denom < r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum < yNum;
+    //return num < r.num || denom < r.denom;
 }
 
 bool Rational::operator>(const Rational & r) const
 {
-    return num > r.num || denom > r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum > yNum;
+    //return num > r.num || denom > r.denom;
 }
 
 bool Rational::operator<=(const Rational & r) const
 {
-    return num <= r.num || denom <= r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum <= yNum;
+    //return num <= r.num || denom <= r.denom;
 }
 
 bool Rational::operator>=(const Rational & r) const
 {
-    return num >= r.num || denom >= r.denom;
+	long long int xNum = num * r.denom;
+	long long int yNum = r.num * denom;
+
+	return xNum >= yNum;
+    //return num >= r.num || denom >= r.denom;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -97,12 +113,12 @@ bool Rational::operator>=(const Rational & r) const
 
 Rational Rational::operator+(const Rational & r) const
 {
-    return Rational((num * r.denom) + (denom * r.num), denom * r.denom);
+    return Rational(num + r.num, denom);
 }
 
 Rational Rational::operator-(const Rational & r) const
 {
-    return Rational((num * r.denom) - (denom * r.num), denom * r.denom);
+    return Rational(num - r.num, denom);
 }
 
 Rational Rational::operator*(const Rational & r) const
@@ -112,7 +128,9 @@ Rational Rational::operator*(const Rational & r) const
 
 Rational Rational::operator/(const Rational & r) const
 {
-    return Rational(num * r.denom, denom * r.num);
+    //return Rational(num / r.num, denom / r.denom);
+
+	return Rational(num * r.denom, denom * r.num);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +138,7 @@ Rational Rational::operator/(const Rational & r) const
 Rational & Rational::operator+=(const Rational & r)
 {
     num   += r.num;
-    denom += r.denom;
+    //denom += r.denom;
     normalise();
     return *this;
 }
@@ -128,7 +146,7 @@ Rational & Rational::operator+=(const Rational & r)
 Rational & Rational::operator-=(const Rational & r)
 {
     num   -= r.num;
-    denom -= r.denom;
+    //denom -= r.denom;
     normalise();
     return *this;
 }
@@ -143,8 +161,11 @@ Rational & Rational::operator*=(const Rational & r)
 
 Rational & Rational::operator/=(const Rational & r)
 {
-    num   /= r.num;
-    denom /= r.denom;
+    //num   /= r.num;
+    //denom /= r.denom;
+
+	num	  *= r.denom;
+	denom *= r.num;
     normalise();
     return *this;
 }
